@@ -14,7 +14,8 @@ const AuthorMeta = ({ data, settings, canonical }) => {
     const author = getAuthorProperties(data)
     const shareImage = author.image || _.get(settings, `cover_image`, null)
     const title = `${data.name} - ${settings.title}`
-    const description = data.bio || config.siteDescriptionMeta || settings.description
+    const description =
+        data.bio || config.siteDescriptionMeta || settings.description
 
     return (
         <>
@@ -30,21 +31,39 @@ const AuthorMeta = ({ data, settings, canonical }) => {
                 <meta name="twitter:title" content={title} />
                 <meta name="twitter:description" content={description} />
                 <meta name="twitter:url" content={canonical} />
-                {settings.twitter && <meta name="twitter:site" content={`https://twitter.com/${settings.twitter.replace(/^@/, ``)}/`} />}
-                {settings.twitter && <meta name="twitter:creator" content={settings.twitter} />}
+                {settings.twitter && (
+                    <meta
+                        name="twitter:site"
+                        content={`https://twitter.com/${settings.twitter.replace(
+                            /^@/,
+                            ``,
+                        )}/`}
+                    />
+                )}
+                {settings.twitter && (
+                    <meta name="twitter:creator" content={settings.twitter} />
+                )}
                 <script type="application/ld+json">{`
                     {
                         "@context": "https://schema.org/",
                         "@type": "Person",
                         "name": "${data.name}",
-                        ${author.sameAsArray ? `"sameAs": ${author.sameAsArray},` : ``}
+                        ${
+                            author.sameAsArray
+                                ? `"sameAs": ${author.sameAsArray},`
+                                : ``
+                        }
                         "url": "${canonical}",
-                        ${shareImage ? `"image": {
+                        ${
+                            shareImage
+                                ? `"image": {
                                 "@type": "ImageObject",
                                 "url": "${shareImage}",
                                 "width": "${config.shareImageWidth}",
                                 "height": "${config.shareImageHeight}"
-                            },` : ``}
+                            },`
+                                : ``
+                        }
                         "mainEntityOfPage": {
                             "@type": "WebPage",
                             "@id": "${config.siteUrl}"
@@ -76,7 +95,7 @@ AuthorMeta.propTypes = {
     canonical: PropTypes.string.isRequired,
 }
 
-const AuthorMetaQuery = props => (
+const AuthorMetaQuery = (props) => (
     <StaticQuery
         query={graphql`
             query GhostSettingsAuthorMeta {
@@ -89,7 +108,7 @@ const AuthorMetaQuery = props => (
                 }
             }
         `}
-        render={data => <AuthorMeta settings={data} {...props} />}
+        render={(data) => <AuthorMeta settings={data} {...props} />}
     />
 )
 
