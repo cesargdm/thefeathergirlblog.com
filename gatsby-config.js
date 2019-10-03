@@ -6,25 +6,25 @@ const generateRSSFeed = require(`./src/utils/rss/generate-feed`)
 let ghostConfig
 
 try {
-    ghostConfig = require(`./.ghost`)
+  ghostConfig = require(`./.ghost`)
 } catch (e) {
-    ghostConfig = {
-        production: {
-            apiUrl: process.env.GHOST_API_URL,
-            contentApiKey: process.env.GHOST_CONTENT_API_KEY,
-        },
-    }
+  ghostConfig = {
+    production: {
+      apiUrl: process.env.GHOST_API_URL,
+      contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+    },
+  }
 } finally {
-    const { apiUrl, contentApiKey } =
-        process.env.NODE_ENV === `development`
-            ? ghostConfig.development
-            : ghostConfig.production
+  const { apiUrl, contentApiKey } =
+    process.env.NODE_ENV === `development`
+      ? ghostConfig.development
+      : ghostConfig.production
 
-    if (!apiUrl || !contentApiKey || contentApiKey.match(/<key>/)) {
-        throw new Error(
-            `GHOST_API_URL and GHOST_CONTENT_API_KEY are required to build. Check the README.`,
-        ) // eslint-disable-line
-    }
+  if (!apiUrl || !contentApiKey || contentApiKey.match(/<key>/)) {
+    throw new Error(
+      `GHOST_API_URL and GHOST_CONTENT_API_KEY are required to build. Check the README.`,
+    ) // eslint-disable-line
+  }
 }
 
 /**
@@ -35,52 +35,52 @@ try {
  *
  */
 module.exports = {
-    siteMetadata: {
-        siteUrl: config.siteUrl,
+  siteMetadata: {
+    siteUrl: config.siteUrl,
+  },
+  plugins: [
+    /**
+     *  Content Plugins
+     */
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: path.join(__dirname, `src`, `pages`),
+        name: `pages`,
+      },
     },
-    plugins: [
-        /**
-         *  Content Plugins
-         */
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: path.join(__dirname, `src`, `pages`),
-                name: `pages`,
-            },
-        },
-        // Setup for optimised images.
-        // See https://www.gatsbyjs.org/packages/gatsby-image/
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: path.join(__dirname, `src`, `images`),
-                name: `images`,
-            },
-        },
-        `gatsby-plugin-sharp`,
-        `gatsby-transformer-sharp`,
-        {
-            resolve: `gatsby-source-ghost`,
-            options:
-                process.env.NODE_ENV === `development`
-                    ? ghostConfig.development
-                    : ghostConfig.production,
-        },
-        /**
-         *  Utility Plugins
-         */
-        {
-            resolve: `gatsby-plugin-ghost-manifest`,
-            options: {
-                short_name: config.shortTitle,
-                start_url: `/`,
-                background_color: config.backgroundColor,
-                theme_color: config.themeColor,
-                display: `minimal-ui`,
-                icon: `static/${config.siteIcon}`,
-                legacy: true,
-                query: `
+    // Setup for optimised images.
+    // See https://www.gatsbyjs.org/packages/gatsby-image/
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: path.join(__dirname, `src`, `images`),
+        name: `images`,
+      },
+    },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-source-ghost`,
+      options:
+        process.env.NODE_ENV === `development`
+          ? ghostConfig.development
+          : ghostConfig.production,
+    },
+    /**
+     *  Utility Plugins
+     */
+    {
+      resolve: `gatsby-plugin-ghost-manifest`,
+      options: {
+        short_name: config.shortTitle,
+        start_url: `/`,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: `minimal-ui`,
+        icon: `static/${config.siteIcon}`,
+        legacy: true,
+        query: `
                 {
                     allGhostSettings {
                         edges {
@@ -92,12 +92,12 @@ module.exports = {
                     }
                 }
               `,
-            },
-        },
-        {
-            resolve: `gatsby-plugin-feed`,
-            options: {
-                query: `
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
                 {
                     allGhostSettings {
                         edges {
@@ -109,13 +109,13 @@ module.exports = {
                     }
                 }
               `,
-                feeds: [generateRSSFeed(config)],
-            },
-        },
-        {
-            resolve: `gatsby-plugin-advanced-sitemap`,
-            options: {
-                query: `
+        feeds: [generateRSSFeed(config)],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-advanced-sitemap`,
+      options: {
+        query: `
                 {
                     allGhostPost {
                         edges {
@@ -158,33 +158,33 @@ module.exports = {
                         }
                     }
                 }`,
-                mapping: {
-                    allGhostPost: {
-                        sitemap: `posts`,
-                    },
-                    allGhostTag: {
-                        sitemap: `tags`,
-                    },
-                    allGhostAuthor: {
-                        sitemap: `authors`,
-                    },
-                    allGhostPage: {
-                        sitemap: `pages`,
-                    },
-                },
-                exclude: [
-                    `/dev-404-page`,
-                    `/404`,
-                    `/404.html`,
-                    `/offline-plugin-app-shell-fallback`,
-                ],
-                createLinkInHead: true,
-                addUncaughtPages: true,
-            },
+        mapping: {
+          allGhostPost: {
+            sitemap: `posts`,
+          },
+          allGhostTag: {
+            sitemap: `tags`,
+          },
+          allGhostAuthor: {
+            sitemap: `authors`,
+          },
+          allGhostPage: {
+            sitemap: `pages`,
+          },
         },
-        `gatsby-plugin-catch-links`,
-        `gatsby-plugin-react-helmet`,
-        `gatsby-plugin-force-trailing-slashes`,
-        `gatsby-plugin-offline`,
-    ],
+        exclude: [
+          `/dev-404-page`,
+          `/404`,
+          `/404.html`,
+          `/offline-plugin-app-shell-fallback`,
+        ],
+        createLinkInHead: true,
+        addUncaughtPages: true,
+      },
+    },
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-force-trailing-slashes`,
+    `gatsby-plugin-offline`,
+  ],
 }

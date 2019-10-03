@@ -12,109 +12,95 @@ import config from '../../../utils/siteConfig'
 import { tags as tagsHelper } from '@tryghost/helpers'
 
 const ArticleMetaGhost = ({ data, settings, canonical }) => {
-    const ghostPost = data
-    settings = settings.allGhostSettings.edges[0].node
+  const ghostPost = data
+  settings = settings.allGhostSettings.edges[0].node
 
-    const author = getAuthorProperties(ghostPost.primary_author)
-    const publicTags = _.map(
-        tagsHelper(ghostPost, { visibility: `public`, fn: (tag) => tag }),
-        `name`,
-    )
-    const primaryTag = publicTags[0] || ``
-    const shareImage = ghostPost.feature_image
-        ? ghostPost.feature_image
-        : _.get(settings, `cover_image`, null)
-    const publisherLogo =
-        settings.logo || config.siteIcon
-            ? url.resolve(config.siteUrl, settings.logo || config.siteIcon)
-            : null
+  const author = getAuthorProperties(ghostPost.primary_author)
+  const publicTags = _.map(
+    tagsHelper(ghostPost, { visibility: `public`, fn: (tag) => tag }),
+    `name`,
+  )
+  const primaryTag = publicTags[0] || ``
+  const shareImage = ghostPost.feature_image
+    ? ghostPost.feature_image
+    : _.get(settings, `cover_image`, null)
+  const publisherLogo =
+    settings.logo || config.siteIcon
+      ? url.resolve(config.siteUrl, settings.logo || config.siteIcon)
+      : null
 
-    return (
-        <>
-            <Helmet>
-                <title>{ghostPost.meta_title || ghostPost.title}</title>
-                <meta
-                    name="description"
-                    content={ghostPost.meta_description || ghostPost.excerpt}
-                />
-                <link rel="canonical" href={canonical} />
+  return (
+    <>
+      <Helmet>
+        <title>{ghostPost.meta_title || ghostPost.title}</title>
+        <meta
+          name="description"
+          content={ghostPost.meta_description || ghostPost.excerpt}
+        />
+        <link rel="canonical" href={canonical} />
 
-                <meta property="og:site_name" content={settings.title} />
-                <meta property="og:type" content="article" />
-                <meta
-                    property="og:title"
-                    content={
-                        ghostPost.og_title ||
-                        ghostPost.meta_title ||
-                        ghostPost.title
-                    }
-                />
-                <meta
-                    property="og:description"
-                    content={
-                        ghostPost.og_description ||
-                        ghostPost.excerpt ||
-                        ghostPost.meta_description
-                    }
-                />
-                <meta property="og:url" content={canonical} />
-                <meta
-                    property="article:published_time"
-                    content={ghostPost.published_at}
-                />
-                <meta
-                    property="article:modified_time"
-                    content={ghostPost.updated_at}
-                />
-                {publicTags.map((keyword, i) => (
-                    <meta property="article:tag" content={keyword} key={i} />
-                ))}
-                {author.facebookUrl && (
-                    <meta
-                        property="article:author"
-                        content={author.facebookUrl}
-                    />
-                )}
+        <meta property="og:site_name" content={settings.title} />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content={
+            ghostPost.og_title || ghostPost.meta_title || ghostPost.title
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            ghostPost.og_description ||
+            ghostPost.excerpt ||
+            ghostPost.meta_description
+          }
+        />
+        <meta property="og:url" content={canonical} />
+        <meta
+          property="article:published_time"
+          content={ghostPost.published_at}
+        />
+        <meta property="article:modified_time" content={ghostPost.updated_at} />
+        {publicTags.map((keyword, i) => (
+          <meta property="article:tag" content={keyword} key={i} />
+        ))}
+        {author.facebookUrl && (
+          <meta property="article:author" content={author.facebookUrl} />
+        )}
 
-                <meta
-                    name="twitter:title"
-                    content={
-                        ghostPost.twitter_title ||
-                        ghostPost.meta_title ||
-                        ghostPost.title
-                    }
-                />
-                <meta
-                    name="twitter:description"
-                    content={
-                        ghostPost.twitter_description ||
-                        ghostPost.excerpt ||
-                        ghostPost.meta_description
-                    }
-                />
-                <meta name="twitter:url" content={canonical} />
-                <meta name="twitter:label1" content="Written by" />
-                <meta name="twitter:data1" content={author.name} />
-                {primaryTag && (
-                    <meta name="twitter:label2" content="Filed under" />
-                )}
-                {primaryTag && (
-                    <meta name="twitter:data2" content={primaryTag} />
-                )}
+        <meta
+          name="twitter:title"
+          content={
+            ghostPost.twitter_title || ghostPost.meta_title || ghostPost.title
+          }
+        />
+        <meta
+          name="twitter:description"
+          content={
+            ghostPost.twitter_description ||
+            ghostPost.excerpt ||
+            ghostPost.meta_description
+          }
+        />
+        <meta name="twitter:url" content={canonical} />
+        <meta name="twitter:label1" content="Written by" />
+        <meta name="twitter:data1" content={author.name} />
+        {primaryTag && <meta name="twitter:label2" content="Filed under" />}
+        {primaryTag && <meta name="twitter:data2" content={primaryTag} />}
 
-                {settings.twitter && (
-                    <meta
-                        name="twitter:site"
-                        content={`https://twitter.com/${settings.twitter.replace(
-                            /^@/,
-                            ``,
-                        )}/`}
-                    />
-                )}
-                {settings.twitter && (
-                    <meta name="twitter:creator" content={settings.twitter} />
-                )}
-                <script type="application/ld+json">{`
+        {settings.twitter && (
+          <meta
+            name="twitter:site"
+            content={`https://twitter.com/${settings.twitter.replace(
+              /^@/,
+              ``,
+            )}/`}
+          />
+        )}
+        {settings.twitter && (
+          <meta name="twitter:creator" content={settings.twitter} />
+        )}
+        <script type="application/ld+json">{`
                     {
                         "@context": "https://schema.org/",
                         "@type": "Article",
@@ -122,37 +108,37 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                             "@type": "Person",
                             "name": "${author.name}",
                             ${
-                                author.image
-                                    ? author.sameAsArray
-                                        ? `"image": "${author.image}",`
-                                        : `"image": "${author.image}"`
-                                    : ``
+                              author.image
+                                ? author.sameAsArray
+                                  ? `"image": "${author.image}",`
+                                  : `"image": "${author.image}"`
+                                : ``
                             }
                             ${
-                                author.sameAsArray
-                                    ? `"sameAs": ${author.sameAsArray}`
-                                    : ``
+                              author.sameAsArray
+                                ? `"sameAs": ${author.sameAsArray}`
+                                : ``
                             }
                         },
                         ${
-                            publicTags.length
-                                ? `"keywords": "${_.join(publicTags, `, `)}",`
-                                : ``
+                          publicTags.length
+                            ? `"keywords": "${_.join(publicTags, `, `)}",`
+                            : ``
                         }
                         "headline": "${ghostPost.meta_title ||
-                            ghostPost.title}",
+                          ghostPost.title}",
                         "url": "${canonical}",
                         "datePublished": "${ghostPost.published_at}",
                         "dateModified": "${ghostPost.updated_at}",
                         ${
-                            shareImage
-                                ? `"image": {
+                          shareImage
+                            ? `"image": {
                                 "@type": "ImageObject",
                                 "url": "${shareImage}",
                                 "width": "${config.shareImageWidth}",
                                 "height": "${config.shareImageHeight}"
                             },`
-                                : ``
+                            : ``
                         }
                         "publisher": {
                             "@type": "Organization",
@@ -165,68 +151,68 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                             }
                         },
                         "description": "${ghostPost.meta_description ||
-                            ghostPost.excerpt}",
+                          ghostPost.excerpt}",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
                             "@id": "${config.siteUrl}"
                         }
                     }
                 `}</script>
-            </Helmet>
-            <ImageMeta image={shareImage} />
-        </>
-    )
+      </Helmet>
+      <ImageMeta image={shareImage} />
+    </>
+  )
 }
 
 ArticleMetaGhost.propTypes = {
-    data: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        published_at: PropTypes.string.isRequired,
-        updated_at: PropTypes.string.isRequired,
-        meta_title: PropTypes.string,
-        meta_description: PropTypes.string,
-        primary_author: PropTypes.object.isRequired,
-        feature_image: PropTypes.string,
-        tags: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string,
-                slug: PropTypes.string,
-                visibility: PropTypes.string,
-            }),
-        ),
-        primaryTag: PropTypes.shape({
-            name: PropTypes.string,
-        }),
-        og_title: PropTypes.string,
-        og_description: PropTypes.string,
-        twitter_title: PropTypes.string,
-        twitter_description: PropTypes.string,
-        excerpt: PropTypes.string.isRequired,
-    }).isRequired,
-    settings: PropTypes.shape({
-        logo: PropTypes.object,
-        title: PropTypes.string,
-        twitter: PropTypes.string,
-        allGhostSettings: PropTypes.object.isRequired,
-    }).isRequired,
-    canonical: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    published_at: PropTypes.string.isRequired,
+    updated_at: PropTypes.string.isRequired,
+    meta_title: PropTypes.string,
+    meta_description: PropTypes.string,
+    primary_author: PropTypes.object.isRequired,
+    feature_image: PropTypes.string,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        slug: PropTypes.string,
+        visibility: PropTypes.string,
+      }),
+    ),
+    primaryTag: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    og_title: PropTypes.string,
+    og_description: PropTypes.string,
+    twitter_title: PropTypes.string,
+    twitter_description: PropTypes.string,
+    excerpt: PropTypes.string.isRequired,
+  }).isRequired,
+  settings: PropTypes.shape({
+    logo: PropTypes.object,
+    title: PropTypes.string,
+    twitter: PropTypes.string,
+    allGhostSettings: PropTypes.object.isRequired,
+  }).isRequired,
+  canonical: PropTypes.string.isRequired,
 }
 
 const ArticleMetaQuery = (props) => (
-    <StaticQuery
-        query={graphql`
-            query GhostSettingsArticleMeta {
-                allGhostSettings {
-                    edges {
-                        node {
-                            ...GhostSettingsFields
-                        }
-                    }
-                }
+  <StaticQuery
+    query={graphql`
+      query GhostSettingsArticleMeta {
+        allGhostSettings {
+          edges {
+            node {
+              ...GhostSettingsFields
             }
-        `}
-        render={(data) => <ArticleMetaGhost settings={data} {...props} />}
-    />
+          }
+        }
+      }
+    `}
+    render={(data) => <ArticleMetaGhost settings={data} {...props} />}
+  />
 )
 
 export default ArticleMetaQuery
