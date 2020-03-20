@@ -42,8 +42,8 @@
     "gatsby-source-ghost": "3.4.6",
     "gatsby-transformer-sharp": "2.2.19",
     "lodash": "4.17.15",
-    "react": "16.10.2",
-    "react-dom": "16.10.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-helmet": "5.2.1"
   }
 }
