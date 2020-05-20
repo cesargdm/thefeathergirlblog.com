@@ -1,18 +1,15 @@
+import url from 'url'
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import url from 'url'
 
 import config from '../../../utils/siteConfig'
+
 import ArticleMeta from './ArticleMeta'
 import WebsiteMeta from './WebsiteMeta'
 import AuthorMeta from './AuthorMeta'
 
-/**
- * MetaData will generate all relevant meta data information incl.
- * JSON-LD (schema.org), Open Graph (Facebook) and Twitter properties.
- *
- */
 const MetaData = ({ data, settings, title, description, image, location }) => {
   const canonical = url.resolve(config.siteUrl, location.pathname)
   const { ghostPost, ghostTag, ghostAuthor, ghostPage } = data

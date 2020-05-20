@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
-import { Navigation } from '.'
 import config from '../../utils/siteConfig'
+
+import { Navigation } from '.'
 
 // Styles
 import '../../styles/app.css'
@@ -19,18 +20,18 @@ import '../../styles/app.css'
  *
  */
 const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
-  const site = data.allGhostSettings.edges[0].node
-  const twitterUrl = site.twitter
+  const site = data.allGhostSettings.edges[0]?.node
+  const twitterUrl = site?.twitter
     ? `https://twitter.com/${site.twitter.replace(/^@/, '')}`
     : null
-  const facebookUrl = site.facebook
+  const facebookUrl = site?.facebook
     ? `https://www.facebook.com/${site.facebook.replace(/^\//, '')}`
     : null
 
   return (
     <>
       <Helmet>
-        <html lang={site.lang} />
+        <html lang={site?.lang} />
         <style type="text/css">{`${site.codeinjection_styles}`}</style>
         <body className={bodyClass} />
       </Helmet>

@@ -1,15 +1,17 @@
+import url from 'url'
+
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import url from 'url'
+
+import { tags as tagsHelper } from '@tryghost/helpers'
+
+import config from '../../../utils/siteConfig'
 
 import getAuthorProperties from './getAuthorProperties'
 import ImageMeta from './ImageMeta'
-import config from '../../../utils/siteConfig'
-
-import { tags as tagsHelper } from '@tryghost/helpers'
 
 const ArticleMetaGhost = ({ data, settings, canonical }) => {
   const ghostPost = data
@@ -125,8 +127,9 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                             ? `"keywords": "${_.join(publicTags, `, `)}",`
                             : ``
                         }
-                        "headline": "${ghostPost.meta_title ||
-                          ghostPost.title}",
+                        "headline": "${
+                          ghostPost.meta_title || ghostPost.title
+                        }",
                         "url": "${canonical}",
                         "datePublished": "${ghostPost.published_at}",
                         "dateModified": "${ghostPost.updated_at}",
@@ -150,8 +153,9 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                                 "height": 60
                             }
                         },
-                        "description": "${ghostPost.meta_description ||
-                          ghostPost.excerpt}",
+                        "description": "${
+                          ghostPost.meta_description || ghostPost.excerpt
+                        }",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
                             "@id": "${config.siteUrl}"

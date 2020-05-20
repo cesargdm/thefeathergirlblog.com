@@ -1,12 +1,13 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { StaticQuery, graphql } from 'gatsby'
 
+import config from '../../../utils/siteConfig'
+
 import ImageMeta from './ImageMeta'
 import getAuthorProperties from './getAuthorProperties'
-import config from '../../../utils/siteConfig'
 
 const AuthorMeta = ({ data, settings, canonical }) => {
   settings = settings.allGhostSettings.edges[0].node

@@ -1,12 +1,14 @@
+import url from 'url'
+
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { StaticQuery, graphql } from 'gatsby'
-import url from 'url'
+
+import config from '../../../utils/siteConfig'
 
 import ImageMeta from './ImageMeta'
-import config from '../../../utils/siteConfig'
 
 const WebsiteMeta = ({
   data,
