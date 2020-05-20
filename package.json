@@ -40,6 +40,7 @@
     "gatsby-plugin-manifest": "2.4.8",
     "gatsby-plugin-offline": "3.2.6",
     "gatsby-plugin-react-helmet": "3.3.2",
+    "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-sharp": "2.6.8",
     "gatsby-source-filesystem": "2.3.7",
     "gatsby-source-ghost": "4.0.4",
