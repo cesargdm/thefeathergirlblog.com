@@ -21,7 +21,7 @@
   "devDependencies": {
     "eslint": "7.0.0",
     "eslint-config-nure": "0.0.9",
-    "eslint-plugin-ghost": "1.4.1",
+    "eslint-plugin-ghost": "1.5.0",
     "eslint-plugin-react": "7.20.0",
     "prettier-config-nure": "^0.1.1"
   },
