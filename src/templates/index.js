@@ -23,6 +23,7 @@ const Index = ({ data, location, pageContext }) => {
         <div className="container">
           <section className="post-feed">
             {posts.map(({ node }) => (
+              node.slug !== 'data-schema' &&
               // The tag below includes the markup for each post - components/common/PostCard.js
               <PostCard key={node.id} post={node} />
             ))}
