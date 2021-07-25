@@ -15,6 +15,7 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-typescript",
     // "gatsby-plugin-manifest",
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-sanity`,
       options: {
