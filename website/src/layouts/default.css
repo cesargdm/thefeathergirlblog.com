@@ -1,0 +1,70 @@
+html,
+body,
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --lh: 1.4rem;
+  line-height: var(--lh);
+}
+
+h1,
+h2 {
+  font-family: "Playfair Display", serif;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+header,
+main {
+  padding: 10px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+main figure,
+main img {
+  max-width: 100%;
+}
+main p {
+  line-height: 1.5;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+p {
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+footer {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+}
+
+footer div {
+  /* max-width: 1200px; */
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
