@@ -26,7 +26,7 @@ function IndexPage({ data }) {
           display: "grid",
           width: "100%",
           minWidth: 0,
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gridTemplateColumns: "repeat(3, minmax(200px, 1fr))",
           gridAutoFlow: "dense",
         }}
       >
@@ -44,7 +44,7 @@ function IndexPage({ data }) {
                   display: "block",
                   borderRight: "1px solid darkgray",
                   // gridRow: `span ${hasLargeExtract + 1}`,
-                  gridColumn: `span ${hasLargeTitle + 1}`,
+                  gridColumn: `span ${1}`,
                 }}
                 to={`/${post.slug.current}`}
                 key={post._id}
@@ -105,7 +105,6 @@ export default IndexPage;
 export const query = graphql`
   query {
     allSanityPost(
-      filter: { id: { nin: "-aa528e5b-78e5-5c0b-94e9-4141bf82653d" } }
       sort: { fields: _updatedAt, order: DESC }
     ) {
       nodes {

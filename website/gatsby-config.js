@@ -9,7 +9,7 @@ const SANITY_DATASET = process.env.SANITY_DATASET;
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Typescript Sample`,
+    title: `The Feather Girl Blog`,
   },
   plugins: [
     "gatsby-plugin-react-helmet",

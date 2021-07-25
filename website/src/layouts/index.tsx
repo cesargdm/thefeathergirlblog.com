@@ -38,12 +38,14 @@ function DefaultLayout(props: DefaultLayoutProps) {
           display: "grid",
           gridTemplateRows: "auto 1fr auto",
           minHeight: "100vh",
+          backgroundColor: '#F7F1E4'
         }}
       >
         {props.children}
         <footer>
           <div>
-            <p>The Feather Girl Blog &copy; {currentYear} </p>
+            <p>
+              <Link to="/">The Feather Girl Blog</Link> &copy; {currentYear} </p>
             <p>
               <Twitter />
               <Facebook />
