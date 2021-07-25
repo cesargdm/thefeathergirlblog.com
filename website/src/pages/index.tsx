@@ -7,7 +7,7 @@ import { File } from "react-feather";
 
 import DefaultLayout from "../layouts";
 
-import { Article, Header } from "./styled";
+import { Article, Header } from "../styled";
 
 function IndexPage({ data }) {
   const {
