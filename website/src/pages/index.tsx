@@ -3,11 +3,11 @@ import Link from "gatsby-link";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { File } from "react-feather";
-// import BlockContent from "@sanity/block-content-to-react";
 
-import DefaultLayout from "../layouts";
+import isotype from '../assets/isotype.svg'
 
-import { Article, Header } from "../styled";
+import DefaultLayout from "../layouts"
+import { Article, Header, HeaderLinks, PostsContainer } from "../styled";
 
 function IndexPage({ data }) {
   const {
@@ -17,19 +17,17 @@ function IndexPage({ data }) {
   return (
     <DefaultLayout title="Home">
       <Header>
+        <div style={{display: 'flex', alignItems: 'center'}}>
         <h1 style={{ fontWeight: 800 }}>The Feather Girl Blog</h1>
-        <Link to="/atl">Author</Link>
+        <img style={{marginLeft: 10,height: 80, width: 80}} src={isotype} />
+        </div>
+        <HeaderLinks>
+          <li>
+            <Link to="/atl">Author</Link>
+          </li>
+        </HeaderLinks>
       </Header>
-      <main
-        style={{
-          padding: 0,
-          display: "grid",
-          width: "100%",
-          minWidth: 0,
-          gridTemplateColumns: "repeat(3, minmax(200px, 1fr))",
-          gridAutoFlow: "dense",
-        }}
-      >
+      <PostsContainer>
         {posts
           .filter(({ slug }) => slug?.current)
           .map((post) => {
@@ -95,7 +93,7 @@ function IndexPage({ data }) {
               </Link>
             );
           })}
-      </main>
+      </PostsContainer>
     </DefaultLayout>
   );
 }

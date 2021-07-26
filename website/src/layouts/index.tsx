@@ -34,12 +34,7 @@ function DefaultLayout(props: DefaultLayoutProps) {
         />
       </Helmet>
       <body
-        style={{
-          display: "grid",
-          gridTemplateRows: "auto 1fr auto",
-          minHeight: "100vh",
-          backgroundColor: '#F7F1E4'
-        }}
+        style={{ display: "grid", gridTemplateRows: "auto 1fr auto", minHeight: "100vh"}}
       >
         {props.children}
         <footer>
