@@ -4,9 +4,9 @@ import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { File } from "react-feather";
 
-import isotype from '../assets/isotype.svg'
+import isotype from "../assets/isotype.svg";
 
-import DefaultLayout from "../layouts"
+import DefaultLayout from "../layouts";
 import { Article, Header, HeaderLinks, PostsContainer } from "../styled";
 
 function IndexPage({ data }) {
@@ -17,9 +17,12 @@ function IndexPage({ data }) {
   return (
     <DefaultLayout title="Home">
       <Header>
-        <div style={{display: 'flex', alignItems: 'center'}}>
-        <h1 style={{ fontWeight: 800 }}>The Feather Girl Blog</h1>
-        <img style={{marginLeft: 10,height: 80, width: 80}} src={isotype} />
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <h1 style={{ fontWeight: 800 }}>The Feather Girl Blog</h1>
+          <img
+            style={{ marginLeft: 10, height: 80, width: 80 }}
+            src={isotype}
+          />
         </div>
         <HeaderLinks>
           <li>
@@ -102,9 +105,7 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    allSanityPost(
-      sort: { fields: _updatedAt, order: DESC }
-    ) {
+    allSanityPost(sort: { fields: _updatedAt, order: DESC }) {
       nodes {
         _id
         _createdAt

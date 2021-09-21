@@ -20,6 +20,15 @@ export const Article = styled.article`
 export const Header = styled.header`
   padding-top: 40px;
   text-align: center;
+
+  h1 {
+    text-align: left;
+  }
+
+  @supports (padding: max(0px)) {
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+  }
 `;
 
 export const HeaderLinks = styled.ul`
@@ -41,5 +50,10 @@ export const PostsContainer = styled.div`
 
   @media (min-width: 800px) {
     grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+
+  @supports (padding: max(0px)) {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 `;

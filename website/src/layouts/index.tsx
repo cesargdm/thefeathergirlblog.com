@@ -28,6 +28,7 @@ function DefaultLayout(props: DefaultLayoutProps) {
           { name: "keywords", content: "blog, feather girl" },
         ]}
       >
+        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link

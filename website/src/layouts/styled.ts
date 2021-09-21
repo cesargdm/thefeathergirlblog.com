@@ -9,9 +9,15 @@ export const Body = styled.body`
 `;
 
 export const Footer = styled.footer`
-  background-color: #000;
-  color: #fff;
-  padding: 10px;
+  background-color: #f1f1f1;
+  color: black;
+  color: black;
+  padding: 30px 10px;
+
+  @supports (padding: max(0px)) {
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+  }
 
   > div {
     max-width: 900px;

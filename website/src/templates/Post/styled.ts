@@ -12,6 +12,11 @@ export const Main = styled.main`
   @media (min-width: 700px) {
     grid-template-columns: 1fr 250px;
   }
+
+  @supports (padding: max(0px)) {
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+  }
 `;
 
 export const BlockContainer = styled.div`
@@ -26,12 +31,13 @@ export const BlockContainer = styled.div`
 
 export const Aside = styled.aside`
   margin-bottom: 20px;
+  padding: 20px 0;
 
   @media (min-width: 700px) {
     top: 0;
     position: sticky;
     height: auto;
-    max-height: 50vh;
+    height: 100vh;
   }
 `;
 
@@ -53,5 +59,10 @@ export const Header = styled.header`
   p {
     max-width: 900px;
     margin: 0 auto;
+
+    @supports (padding: max(0px)) {
+      padding-left: max(10px, env(safe-area-inset-left));
+      padding-right: max(10px, env(safe-area-inset-right));
+    }
   }
 `;
