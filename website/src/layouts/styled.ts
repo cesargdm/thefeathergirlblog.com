@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Body = styled.body`
   width: 100%;
@@ -6,7 +6,7 @@ export const Body = styled.body`
   min-height: 100vh;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
-`;
+`
 
 export const Footer = styled.footer`
   background-color: #f1f1f1;
@@ -34,4 +34,4 @@ export const Footer = styled.footer`
       grid-template-columns: repeat(3, 1fr);
     }
   }
-`;
+`

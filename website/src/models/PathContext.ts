@@ -1,12 +1,12 @@
-import Post from './Post';
+import Post from './Post'
 
 interface PathContext {
-  tags?: string[];
-  categories?: string[];
-  categoryName: string;
-  tagName?: string;
-  posts?: Post[];
-  post?: Post;
+  tags?: string[]
+  categories?: string[]
+  categoryName: string
+  tagName?: string
+  posts?: Post[]
+  post?: Post
 }
 
-export default PathContext;
+export default PathContext

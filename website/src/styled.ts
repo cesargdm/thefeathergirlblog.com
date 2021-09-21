@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Article = styled.article`
   --highlight-color: #ffd00d;
@@ -15,7 +15,7 @@ export const Article = styled.article`
       transparent 50%
     );
   }
-`;
+`
 
 export const Header = styled.header`
   padding-top: 40px;
@@ -29,12 +29,12 @@ export const Header = styled.header`
     padding-left: max(10px, env(safe-area-inset-left));
     padding-right: max(10px, env(safe-area-inset-right));
   }
-`;
+`
 
 export const HeaderLinks = styled.ul`
   display: flex;
   justify-content: flex-end;
-`;
+`
 
 export const PostsContainer = styled.div`
   padding: 0;
@@ -56,4 +56,4 @@ export const PostsContainer = styled.div`
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
-`;
+`

@@ -11,7 +11,7 @@ html {
 
 h1,
 h2 {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
 }
 
 h1 {
@@ -52,4 +52,14 @@ p {
 a {
   color: inherit;
   text-decoration: inherit;
+}
+
+button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  padding: 0;
 }

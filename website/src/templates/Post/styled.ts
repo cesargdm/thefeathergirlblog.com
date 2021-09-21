@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Main = styled.main`
   padding: 10px;
@@ -17,7 +17,7 @@ export const Main = styled.main`
     padding-left: max(10px, env(safe-area-inset-left));
     padding-right: max(10px, env(safe-area-inset-right));
   }
-`;
+`
 
 export const BlockContainer = styled.div`
   max-width: 800px;
@@ -27,7 +27,7 @@ export const BlockContainer = styled.div`
   a {
     word-wrap: break-word;
   }
-`;
+`
 
 export const Aside = styled.aside`
   margin-bottom: 20px;
@@ -39,7 +39,7 @@ export const Aside = styled.aside`
     height: auto;
     height: 100vh;
   }
-`;
+`
 
 export const Header = styled.header`
   [data-gatsby-image-wrapper] {
@@ -65,4 +65,4 @@ export const Header = styled.header`
       padding-right: max(10px, env(safe-area-inset-right));
     }
   }
-`;
+`

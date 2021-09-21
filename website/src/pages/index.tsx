@@ -1,23 +1,23 @@
-import * as React from "react";
-import Link from "gatsby-link";
-import { graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { File } from "react-feather";
+import * as React from 'react'
+import Link from 'gatsby-link'
+import { graphql } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
+import { File } from 'react-feather'
 
-import isotype from "../assets/isotype.svg";
+import isotype from '../assets/isotype.svg'
 
-import DefaultLayout from "../layouts";
-import { Article, Header, HeaderLinks, PostsContainer } from "../styled";
+import DefaultLayout from '../layouts'
+import { Article, Header, HeaderLinks, PostsContainer } from '../styled'
 
 function IndexPage({ data }) {
   const {
     allSanityPost: { nodes: posts },
-  } = data;
+  } = data
 
   return (
     <DefaultLayout title="Home">
       <Header>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <h1 style={{ fontWeight: 800 }}>The Feather Girl Blog</h1>
           <img
             style={{ marginLeft: 10, height: 80, width: 80 }}
@@ -26,7 +26,7 @@ function IndexPage({ data }) {
         </div>
         <HeaderLinks>
           <li>
-            <Link to="/atl">Author</Link>
+            <Link to="/feather-girl">Author</Link>
           </li>
         </HeaderLinks>
       </Header>
@@ -34,16 +34,16 @@ function IndexPage({ data }) {
         {posts
           .filter(({ slug }) => slug?.current)
           .map((post) => {
-            const hasLargeTitle = post.title?.length > 30 ? 1 : 0;
-            const hasExtract = post.extract ? 1 : 0;
-            const fileExtension = post.file?.asset.extension;
+            const hasLargeTitle = post.title?.length > 30 ? 1 : 0
+            const hasExtract = post.extract ? 1 : 0
+            const fileExtension = post.file?.asset.extension
             // const hasLargeExtract = post.extract?.length > 120 ? 1 : 0;
 
             return (
               <Link
                 style={{
-                  display: "block",
-                  borderRight: "1px solid darkgray",
+                  display: 'block',
+                  borderRight: '1px solid darkgray',
                   // gridRow: `span ${hasLargeExtract + 1}`,
                   gridColumn: `span ${1}`,
                 }}
@@ -60,19 +60,19 @@ function IndexPage({ data }) {
                   <div>
                     <h2
                       style={{
-                        fontSize: hasLargeTitle ? "1.75rem" : "2.5rem",
-                        wordWrap: "break-word",
+                        fontSize: hasLargeTitle ? '1.75rem' : '2.5rem',
+                        wordWrap: 'break-word',
                       }}
                     >
                       {post.title}
                     </h2>
                   </div>
-                  <p style={{ fontSize: "0.9rem" }}>
+                  <p style={{ fontSize: '0.9rem' }}>
                     {new Date(post._createdAt).toLocaleDateString()}
                   </p>
                   {Boolean(post.mainImage?.asset.gatsbyImageData) && (
                     <GatsbyImage
-                      style={{ minWidth: 160, maxWidth: "100%" }}
+                      style={{ minWidth: 160, maxWidth: '100%' }}
                       alt=""
                       image={post.mainImage.asset.gatsbyImageData}
                     />
@@ -80,10 +80,10 @@ function IndexPage({ data }) {
                   {Boolean(hasExtract) && (
                     <p
                       style={{
-                        maxHeight: "100px",
-                        overflow: "hidden",
-                        fontSize: "1rem !important",
-                        textOverflow: "ellipsis",
+                        maxHeight: '100px',
+                        overflow: 'hidden',
+                        fontSize: '1rem !important',
+                        textOverflow: 'ellipsis',
                       }}
                     >
                       {post.extract}
@@ -94,14 +94,14 @@ function IndexPage({ data }) {
                   ))}
                 </Article>
               </Link>
-            );
+            )
           })}
       </PostsContainer>
     </DefaultLayout>
-  );
+  )
 }
 
-export default IndexPage;
+export default IndexPage
 
 export const query = graphql`
   query {
@@ -133,4 +133,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

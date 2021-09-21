@@ -1,33 +1,46 @@
-import * as React from "react";
-import { Link } from "gatsby";
-import Helmet from "react-helmet";
-import { Twitter, Facebook } from "react-feather";
+import * as React from 'react'
+import { Link } from 'gatsby'
+import Helmet from 'react-helmet'
+import { Twitter, Facebook } from 'react-feather'
 
-import "./index.css";
-import "./default.css";
+import './index.css'
+import './default.css'
 
-import { Body, Footer } from "./styled";
+import { Body, Footer } from './styled'
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
-  title: string;
+  title: string
+  image?: string
   location?: {
-    pathname: string;
-  };
+    href: string
+    pathname: string
+  }
 }
 
-const currentYear = new Date().getFullYear();
+const currentYear = new Date().getFullYear()
+const defaultTitle = 'The Feather Girl Blog'
+const description =
+  'I write images and they write me. Read me to find out artsy stuff !'
 
 function DefaultLayout(props: DefaultLayoutProps) {
+  const { image, title } = props
+
   return (
     <>
       <Helmet
-        titleTemplate="%s | The Feather Girl Blog"
-        title={props.title}
+        titleTemplate={`%s - ${defaultTitle}`}
+        title={title}
         meta={[
-          { name: "description", content: "template" },
-          { name: "keywords", content: "blog, feather girl" },
+          { name: 'description', content: description },
+          { name: 'keywords', content: 'blog, feather girl' },
         ]}
       >
+        {image && <meta property="og:image" content={image} />}
+        {location?.href && <meta property="og:url" content={location.href} />}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title ?? defaultTitle} />
+        <meta property="og:description" content={description} />
+
         <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -41,7 +54,7 @@ function DefaultLayout(props: DefaultLayoutProps) {
         <Footer>
           <div>
             <p>
-              <Link to="/">The Feather Girl Blog</Link> &copy; {currentYear}{" "}
+              <Link to="/">The Feather Girl Blog</Link> &copy; {currentYear}{' '}
             </p>
             <p>
               <Twitter />
@@ -54,7 +67,7 @@ function DefaultLayout(props: DefaultLayoutProps) {
         </Footer>
       </Body>
     </>
-  );
+  )
 }
 
-export default DefaultLayout;
+export default DefaultLayout
