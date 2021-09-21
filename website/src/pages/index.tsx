@@ -26,7 +26,7 @@ function IndexPage({ data }) {
         </div>
         <HeaderLinks>
           <li>
-            <Link to="/feather-girl">Author</Link>
+            <Link to="/feather-girl/">Author</Link>
           </li>
         </HeaderLinks>
       </Header>
@@ -47,7 +47,7 @@ function IndexPage({ data }) {
                   // gridRow: `span ${hasLargeExtract + 1}`,
                   gridColumn: `span ${1}`,
                 }}
-                to={`/${post.slug.current}`}
+                to={`/${post.slug.current}/`}
                 key={post._id}
               >
                 <Article>

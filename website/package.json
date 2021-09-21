@@ -34,6 +34,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "babel-plugin-styled-components": "^1.13.2",
     "feather-icons": "^4.28.0",
+    "gatsby-plugin-force-trailing-slashes": "1.0.5",
     "gatsby-plugin-styled-components": "^4.14.0",
     "gatsby-source-sanity": "^7.0.7",
     "react": "^17.0.2",

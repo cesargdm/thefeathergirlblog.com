@@ -14,7 +14,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-typescript',
-    // "gatsby-plugin-manifest",
+    'gatsby-plugin-force-trailing-slashes',
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-sanity`,
