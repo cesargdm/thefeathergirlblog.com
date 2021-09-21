@@ -10,6 +10,8 @@ import { Aside, BlockContainer, Header, Main } from './styled'
 const GATSBY_SANITY_PROJECT_ID = process.env.GATSBY_SANITY_PROJECT_ID
 const GATSBY_SANITY_DATASET = process.env.GATSBY_SANITY_DATASET
 
+const OG_IMAGE_DIMENSION_PARAMS = '?h=1200&w=627&fit=max'
+
 function PostTemplate(props: any) {
   const post = props.data.sanityPost
   const postFileUrl = post.file?.asset.url
@@ -17,7 +19,7 @@ function PostTemplate(props: any) {
   return (
     <DefaultLayout
       location={props.location}
-      image={post.mainImage.asset.url}
+      image={`${post.mainImage.asset.url}${OG_IMAGE_DIMENSION_PARAMS}`}
       title={post.title}
     >
       <Header>
