@@ -94,7 +94,11 @@ export const query = graphql`
 
       mainImage {
         asset {
-          gatsbyImageData
+          gatsbyImageData(
+            width: 1200
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+          )
           url
         }
       }

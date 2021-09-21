@@ -70,8 +70,8 @@ function IndexPage({ data }) {
                   {Boolean(post.mainImage?.asset.gatsbyImageData) && (
                     <GatsbyImage
                       style={{ minWidth: 160, maxWidth: '100%' }}
-                      alt=""
                       image={post.mainImage.asset.gatsbyImageData}
+                      alt={post.title}
                     />
                   )}
                   {Boolean(hasExtract) && (
@@ -118,7 +118,11 @@ export const query = graphql`
         }
         mainImage {
           asset {
-            gatsbyImageData
+            gatsbyImageData(
+              width: 400
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
           }
         }
         categories {
