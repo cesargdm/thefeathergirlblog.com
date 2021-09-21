@@ -67,9 +67,6 @@ function IndexPage({ data }) {
                       {post.title}
                     </h2>
                   </div>
-                  <p style={{ fontSize: '0.9rem' }}>
-                    {new Date(post._createdAt).toLocaleDateString()}
-                  </p>
                   {Boolean(post.mainImage?.asset.gatsbyImageData) && (
                     <GatsbyImage
                       style={{ minWidth: 160, maxWidth: '100%' }}
@@ -108,7 +105,6 @@ export const query = graphql`
     allSanityPost(sort: { fields: _updatedAt, order: DESC }) {
       nodes {
         _id
-        _createdAt
         title
         extract
         slug {

@@ -29,7 +29,6 @@ function PostTemplate(props: any) {
           />
         )}
         <h1>{post.title}</h1>
-        <p>{new Date(post._createdAt).toLocaleDateString()}</p>
       </Header>
       <Main>
         <BlockContainer>
@@ -88,9 +87,6 @@ export default PostTemplate
 export const query = graphql`
   query ($id: String) {
     sanityPost(id: { eq: $id }) {
-      _createdAt
-      _updatedAt
-
       title
       _rawBody
 

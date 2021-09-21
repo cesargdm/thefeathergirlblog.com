@@ -16,7 +16,6 @@ function AuthorTemplate(props: any) {
     <DefaultLayout title={author.title}>
       <Header>
         <h1>{author.name}</h1>
-        <p>{new Date(author._updatedAt).toLocaleDateString()}</p>
       </Header>
       <Main>
         <BlockContainer>
@@ -36,8 +35,6 @@ export default AuthorTemplate
 export const query = graphql`
   query ($id: String) {
     sanityAuthor(id: { eq: $id }) {
-      _updatedAt
-
       _rawBio
       name
     }
