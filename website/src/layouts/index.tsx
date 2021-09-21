@@ -6,6 +6,8 @@ import { Twitter, Facebook } from "react-feather";
 import "./index.css";
 import "./default.css";
 
+import { Body, Footer } from "./styled";
+
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   title: string;
   location?: {
@@ -33,14 +35,13 @@ function DefaultLayout(props: DefaultLayoutProps) {
           rel="stylesheet"
         />
       </Helmet>
-      <body
-        style={{ display: "grid", gridTemplateRows: "auto 1fr auto", minHeight: "100vh"}}
-      >
+      <Body>
         {props.children}
-        <footer>
+        <Footer>
           <div>
             <p>
-              <Link to="/">The Feather Girl Blog</Link> &copy; {currentYear} </p>
+              <Link to="/">The Feather Girl Blog</Link> &copy; {currentYear}{" "}
+            </p>
             <p>
               <Twitter />
               <Facebook />
@@ -49,8 +50,8 @@ function DefaultLayout(props: DefaultLayoutProps) {
               <Link to="/">Home</Link>
             </p>
           </div>
-        </footer>
-      </body>
+        </Footer>
+      </Body>
     </>
   );
 }

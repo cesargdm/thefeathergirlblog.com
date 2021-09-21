@@ -28,7 +28,6 @@ h2 {
 
 header,
 main {
-  padding: 10px;
   width: 100%;
   margin: 0 auto;
 }
@@ -53,18 +52,4 @@ p {
 a {
   color: inherit;
   text-decoration: inherit;
-}
-
-footer {
-  background-color: #000;
-  color: #fff;
-  padding: 10px;
-}
-
-footer div {
-  /* max-width: 1200px; */
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
 }

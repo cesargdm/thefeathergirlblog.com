@@ -4,7 +4,8 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import BlockContent from "@sanity/block-content-to-react";
 import { Twitter, Facebook, File } from "react-feather";
 
-import DefaultLayout from "../layouts";
+import DefaultLayout from "../../layouts";
+import { Aside, BlockContainer, Header, Main } from "./styled";
 
 const GATSBY_SANITY_PROJECT_ID = process.env.GATSBY_SANITY_PROJECT_ID;
 const GATSBY_SANITY_DATASET = process.env.GATSBY_SANITY_DATASET;
@@ -15,35 +16,32 @@ function PostTemplate(props: any) {
 
   return (
     <DefaultLayout title={post.title}>
-      <header>
+      <Header>
         {Boolean(post.mainImage?.asset.gatsbyImageData) && (
           <GatsbyImage
-            style={{ minWidth: 160, maxWidth: "100%" }}
+            style={{ minWidth: 160, width: "100%" }}
             alt=""
             image={post.mainImage.asset.gatsbyImageData}
           />
         )}
         <h1>{post.title}</h1>
         <p>{new Date(post._createdAt).toLocaleDateString()}</p>
-      </header>
-      <main
-        style={{ display: "grid", gridTemplateColumns: "1fr 250px", gap: 20 }}
-      >
-        <div style={{ maxWidth: 800 }}>
+      </Header>
+      <Main>
+        <BlockContainer>
           <BlockContent
             projectId={GATSBY_SANITY_PROJECT_ID}
             dataset={GATSBY_SANITY_DATASET}
             blocks={post._rawBody}
           />
-        </div>
-        <aside style={{ postion: "sticky", top: 0 }}>
+        </BlockContainer>
+        <Aside>
           {postFileUrl && (
             <a href={postFileUrl} download>
               Descarga versión PDF
               <File />
             </a>
           )}
-          <hr />
           <ul>
             <li>
               <a href="https://twitter.com">
@@ -78,8 +76,8 @@ function PostTemplate(props: any) {
                 </li>
               )} */}
           </ul>
-        </aside>
-      </main>
+        </Aside>
+      </Main>
     </DefaultLayout>
   );
 }

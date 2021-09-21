@@ -82,7 +82,7 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   `);
 
-  const postTemplate = path.resolve(`src/templates/Post.tsx`);
+  const postTemplate = path.resolve(`src/templates/Post/index.tsx`);
 
   for (const post of posts) {
     if (post.slug?.current)
