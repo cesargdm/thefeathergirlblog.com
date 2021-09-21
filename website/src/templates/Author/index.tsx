@@ -12,8 +12,6 @@ const GATSBY_SANITY_DATASET = process.env.GATSBY_SANITY_DATASET
 function AuthorTemplate(props: any) {
   const author = props.data?.sanityAuthor
 
-  console.log(author)
-
   return (
     <DefaultLayout title={author.title}>
       <Header>
