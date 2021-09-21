@@ -16,18 +16,20 @@ function PostTemplate(props: any) {
   const post = props.data.sanityPost
   const postFileUrl = post.file?.asset.url
 
+  const imageAsset = post.mainImage?.asset
+
   return (
     <DefaultLayout
       location={props.location}
-      image={`${post.mainImage.asset.url}${OG_IMAGE_DIMENSION_PARAMS}`}
+      image={imageAsset?.url && `${imageAsset.url}${OG_IMAGE_DIMENSION_PARAMS}`}
       title={post.title}
     >
       <Header>
-        {Boolean(post.mainImage?.asset.gatsbyImageData) && (
+        {Boolean(imageAsset?.gatsbyImageData) && (
           <GatsbyImage
             style={{ minWidth: 160, width: '100%' }}
             alt=""
-            image={post.mainImage.asset.gatsbyImageData}
+            image={imageAsset.gatsbyImageData}
           />
         )}
         <h1>{post.title}</h1>
