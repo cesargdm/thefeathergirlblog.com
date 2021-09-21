@@ -23,7 +23,7 @@ const description =
   'I write images and they write me. Read me to find out artsy stuff !'
 
 function DefaultLayout(props: DefaultLayoutProps) {
-  const { image, title } = props
+  const { image, title, location } = props
 
   return (
     <>
